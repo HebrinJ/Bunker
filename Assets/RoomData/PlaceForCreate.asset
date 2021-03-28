@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa875ced7cca5345aabb7c3b8a83eb8, type: 3}
+  m_Name: PlaceForCreate
+  m_EditorClassIdentifier: 
+  roomName: PlaceForCreate
+  prefab: {fileID: 1809956986186952304, guid: f48def1db7fd1334eb4adc2de7eee676, type: 3}
+  callingPanel: {fileID: 8184602454158563176, guid: 21e5ade7fe0350d4f96c9fa9b2519fa2, type: 3}

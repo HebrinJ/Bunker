@@ -2,67 +2,27 @@
 
 public class Room : MonoBehaviour
 {
-    private RoomType currentType;
-            
-    public GameObject buildRoomPanel;
-
+    private RoomScriptableObject currentType;
+    //[SerializeField] private GameObject roomPanel;
+    public GameObject roomPanel;
     void Start()
     {
-        currentType = SetType(RoomType.emptyField);
-        
-    }
-
-    private void OnMouseOver()
+        currentType = GetComponent<RoomTypeHolder>().roomType;
+        roomPanel = GameAssets.Instance.buildRoomPanel;
+        CloseRoomMenu();
+    }    
+    
+    public void OpenRoomMenu()
     {
-        
-            if (Input.GetMouseButtonDown(0))
-            {
-                foreach (GameObject item in GameController.Instance.rooms)
-                {
-                    item.layer = 2;
-                }
-                
+        roomPanel.SetActive(true);
 
-                if (currentType == RoomType.emptyField)
-                {
-                    buildRoomPanel.SetActive(true);
-                    GameController.Instance.roomName = gameObject.name;
-                    GameController.Instance.spriteName = "Room_empty_prototype";
-
-                }
-                else if (currentType == RoomType.emptyRoom)
-                {
-                    Debug.Log("type " + currentType);
-                }
-                else
-                {
-                    Debug.Log("type " + currentType);
-                }
-           
-        }
+        GameController.Instance.BlockRaycast();
     }
 
-    private RoomType SetType(RoomType type)
+    public void CloseRoomMenu()
     {
-        return RoomType.emptyField;
+        roomPanel.SetActive(false);
+
+        GameController.Instance.UnblockRaycast();
     }
-
-}
-
-public enum RoomType
-{
-    emptyField,
-    emptyRoom,
-    entrance,
-    reactor,
-    workshop,
-    storage,
-    lifeQuat,
-    waterStation,
-    hydroFarm,
-    lab,
-    airCondition,
-    garage,
-    classicFarm,
-    trainingRoom
 }

@@ -9,21 +9,27 @@ public class GameController : Singleton<GameController>
     [System.NonSerialized]
     public string spriteName;
     [System.NonSerialized]
-    public List<GameObject> rooms = new List<GameObject>();
+    public List<GameObject> placeHolders = new List<GameObject>();
+    public List<GameObject> panels = new List<GameObject>();
     
-    public Transform roomsParent;
+    public Transform placeHoldersParent;
     
     public GameObject buildRoomPanel;
 
     private void Start()
     {
-        for (int i = 0; i < roomsParent.childCount; i++)
+        for (int i = 0; i < placeHoldersParent.childCount; i++)
         {
-            rooms.Add(roomsParent.GetChild(i).gameObject);
+            placeHolders.Add(placeHoldersParent.GetChild(i).gameObject);            
         }
         
     }
-    public void SetSprite()
+
+    public void SetType()
+    {
+        Destroy(gameObject);
+    }
+    /*public void SetSprite()
     {
         SpriteRenderer spriteRenderer = GameObject.Find(roomName).GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
@@ -37,12 +43,29 @@ public class GameController : Singleton<GameController>
         {
             item.layer = 0;
         }
-    }
+    }*/
         
     public void CloseWindow(GameObject obj)
     {
         obj.SetActive(false);
-        foreach (GameObject item in GameController.Instance.rooms)
+        foreach (GameObject item in placeHolders)
+        {
+            item.layer = 0;
+        }
+    }
+
+    public void BlockRaycast()
+    {
+        foreach (GameObject item in placeHolders)
+        {
+            item.layer = 2;
+        }
+        Debug.Log("Raycast Block");
+    }
+
+    public void UnblockRaycast()
+    {
+        foreach (GameObject item in placeHolders)
         {
             item.layer = 0;
         }
